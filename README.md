@@ -1,198 +1,161 @@
-# Capital Consistency under Regulatory Credit-Risk Uncertainty
+# Capital Consistency
 
-Exact examples, boundary results, and auditable computations for CCF/EAD-LGD
-allocation and joint margins of conservatism in an EU IRB research setting.
+[![CI](https://github.com/Maar10Herr/Capital-Consistency-Public/actions/workflows/ci.yml/badge.svg)](https://github.com/Maar10Herr/Capital-Consistency-Public/actions/workflows/ci.yml)
+[![License: GPL v3+](https://img.shields.io/badge/License-GPL_v3%2B-blue.svg)](LICENSE)
+[![ORCID](https://img.shields.io/badge/ORCID-0009--0005--8721--6588-A6CE39.svg)](https://orcid.org/0009-0005-8721-6588)
 
-> **Research and software status**
->
-> Experimental technical research implementation. It is not a validated bank
-> capital engine, a substitute for supervisory software, or legal, regulatory,
-> statistical, accounting, or risk-management advice. The implemented
-> Basel-style corporate functional is a mathematical test functional; its legal
-> applicability and operator order must be checked independently for each use.
+Exact allocation identities, regulatory boundary cases, and joint-conservatism
+tools for European internal-ratings credit-risk calculations.
 
-**[Read the technical report](artifacts/reports/capital-consistency-technical-report.pdf).**
+> [!IMPORTANT]
+> **Research software and technical report.** The regulatory mapping is tied to
+> the cited CRR3 and EBA materials. Operational use requires independent legal,
+> model-risk, and implementation review for the relevant exposure class and
+> reporting date.
 
-The project asks two connected but bounded questions:
+**[Read the technical report](artifacts/reports/capital-consistency-technical-report.pdf)** ·
+**[Download the latest release](https://github.com/Maar10Herr/Capital-Consistency-Public/releases/latest)**
 
-1. When does reallocating one fixed synthetic economic history between
-   exposure at default/credit conversion factor and realised LGD preserve
-   expected loss or RWA expressions?
-2. Once a valid joint uncertainty set has been specified, what deterministic
-   calculations bound capital-scale targets without silently replacing joint
-   coverage by unrelated component-wise margins?
+## Results at a glance
 
-The package uses only the Python standard library. It includes exact rational
-counterexamples, a separately checked corporate IRB formula, small support and
-endpoint solvers, deterministic synthetic experiments, and three machine-readable
-certificates.
+The project studies how a fixed economic history changes when loss is allocated
+between exposure at default (EAD), credit conversion factor (CCF), and loss
+given default (LGD).
 
-## Main result and its boundary
+For loss-consistent records with `EAD × LGD = L`, expected loss and the
+performing-exposure IRB capital term reduce to weighted moments of the same
+economic-loss atoms:
 
-For one fixed economic history, consider
-
-$$
-R(\theta,q)=c(\theta)\,\psi_{\ell,u}(A(q),L),
+```math
+\operatorname{EL}=\sum_i w_i p_i L_i,
 \qquad
-\psi_{\ell,u}(A,L)=\min\{uA,\max(\ell A,L)\}.
-$$
-
-Within the paper’s stated separable, nonnegative domain:
-
-- if no floor or clip binds, loss consistency $A(q)g(q)=L$ removes the
-  allocation choice from the product exactly;
-- with a common floor/clip and interval CCF, the allocation maximum reduces to
-  the maximum-EAD endpoint;
-- when allocation changes PD, maturity, grade, segment, weights, operators, or
-  the uncertainty set, factorization and endpoint reduction can fail.
-
-This is a boundary characterization, not a claim that the elementary
-$\mathrm{EAD}\times\mathrm{LGD}$ identity or regulatory compensation principle
-is new, and not a universal capital-invariance theorem.
-
-## Joint conservatism
-
-The implementation treats two questions as separate:
-
-1. Does a supplied confidence or uncertainty set have the intended simultaneous
-   validity?
-2. Given that set, what is the worst value of the actual regulatory target?
-
-Projection, ellipsoid support, Bonferroni bounds, finite transport, and robust
-optimization are established methods. The current package implements useful
-special cases and counterexamples; it does not supply a credit-specific
-finite-sample joint-coverage theorem for dependent PD/LGD/CCF estimators.
-
-In particular, the implemented corporate unexpected-loss kernel is not
-globally increasing in PD, so a component-wise upper PD need not maximize RWA.
-Direct target optimization is required on the stated domain.
-
-## Reproduce the release
-
-Requirements: Python 3.9+ and a POSIX shell. No third-party Python package,
-database, external service, credential, or confidential dataset is needed.
-
-```sh
-make test
-make reproduce
-make audit
+\operatorname{RWA}_0=12.5\sum_i w_i L_i H(p_i,M_i,s_i).
 ```
 
-Equivalent direct commands:
+This yields four concrete results:
+
+1. **Exact invariance criteria.** Allocation is immaterial precisely when the
+   corresponding weighted loss moments remain fixed.
+2. **Sharp endpoint reduction.** Under common LGD floors or clips and interval
+   CCF uncertainty, the worst allocation is attained at the maximum feasible
+   EAD endpoint.
+3. **Boundary counterexamples.** Exact rational witnesses show how binding
+   floors, default weighting, and coefficient-changing transfers break simple
+   product invariance.
+4. **Joint conservatism discipline.** Confidence-set validity and worst-case
+   target optimization are separate steps; the corporate unexpected-loss
+   coefficient must be optimized directly because it is not globally
+   increasing in PD.
+
+The unified collapse-or-endpoint theorem identifies when allocation uncertainty
+disappears, when it becomes a one-endpoint calculation, and when grade, segment,
+weight, or confidence-set coupling requires joint optimization.
+
+## Quick start
+
+The core package uses the Python standard library and supports Python 3.9+.
 
 ```sh
-PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src \
-  python3 -m unittest discover -s tests -p 'test_*.py' -v
-bash scripts/reproduce_all.sh
-bash scripts/audit_repository.sh
-```
-
-The release audit runs 36 tests, regenerates the exact examples and seeded
-adversarial atlas, independently checks all three certificates, and rejects
-unexpected symlinks or generated interpreter/log artifacts.
-
-The adversarial atlas contains 5,000 seeded reallocation pairs and a
-20,001-point PD grid. Those are finite numerical regression results, not proofs
-or certified global optimization. Exact-rational status applies only to the
-certificates that explicitly claim it.
-
-## Command-line interface
-
-Install the local package:
-
-```sh
+python3 -m venv .venv
+. .venv/bin/activate
 python3 -m pip install -e .
 capital-consistency --help
 ```
 
-Representative commands:
+Run the exact examples and verify every certificate:
 
 ```sh
-capital-consistency validate-history examples/cashflow-histories/repeat-default.json
-capital-consistency evaluate-allocation \
-  examples/exact-counterexamples/allocation-low-ead.json --lgd-floor 0.10
-capital-consistency extremize-allocation \
-  examples/mathematical-edge-cases/allocation-interval.json
-capital-consistency verify-certificate \
-  artifacts/certificates/allocation-floor-counterexample.json
-capital-consistency reproduce core-exact
-capital-consistency audit
+python3 experiments/run_exact_examples.py
+python3 -m capital_consistency verify-all artifacts/certificates
 ```
 
-All bundled examples are synthetic.
+Reproduce the complete public evidence set:
 
-## Certificates and artifacts
+```sh
+make reproduce
+make audit
+```
 
-`artifacts/certificates/` contains:
+## Evidence package
 
-- an exact rational LGD-floor allocation counterexample;
-- an exact rational default-weighting counterexample; and
-- a floating ellipsoid-support certificate with an independent semantic check.
+| Artifact | Purpose | Verification status |
+|---|---|---|
+| `allocation-floor-counterexample.json` | Binding-floor witness | Exact rational recomputation |
+| `allocation-weighting-counterexample.json` | Default-weighting witness | Exact rational recomputation |
+| `ellipsoid-affine-support.json` | Affine support over a singular ellipsoid | Independent primal/upper-bound check |
+| `adversarial-atlas.json` | Fixed-loss reallocations and PD-grid regressions | Deterministic finite test atlas |
+| Technical report | Definitions, theorems, proofs, and regulatory scope | Built, linked, and cited from the release |
 
-`artifacts/reports/` contains the reviewed paper, deterministic manifests, and
-the finite adversarial atlas. Manifests use content hashes and deliberately
-record no private Git commit identifier.
+The adversarial atlas fixes seed `20260806`, evaluates 5,000 random reallocation
+pairs, and checks a 20,001-point PD grid. Algebraic claims are proved in the
+report; rational status applies to the two exact certificates.
 
-## Prior work and regulatory attribution
-
-The report explicitly credits and distinguishes:
-
-- [CRR3, Regulation (EU) 2024/1623](https://eur-lex.europa.eu/eli/reg/2024/1623/oj)
-  and the [consolidated CRR](https://eur-lex.europa.eu/eli/reg/2013/575/2026-06-26/eng);
-- [EBA/GL/2017/16](https://www.eba.europa.eu/publications-and-media/press-releases/eba-publishes-final-guidelines-estimation-risk-parameters)
-  on PD/LGD estimation and defaulted exposures;
-- the consultative, non-binding [EBA CCF methodology material](https://www.eba.europa.eu/activities/single-rulebook/regulatory-activities/model-validation/guidelines-methodology-estimate-and-apply-credit-conversion-factors-under-capital-requirements?version=2025);
-- the Basel Committee’s [CRE31 risk-weight-function specification](https://www.bis.org/basel_framework/chapter/CRE/31.htm);
-- Kaido, Molinari, and Stoye on projection inference;
-- Delage and Ye on distributionally robust optimization;
-- Löffler and Baviera on estimation/model risk in credit capital.
-
-Regulatory texts, guidance, and consultation material are not interchangeable.
-Their citation does not imply endorsement, legal validation, or co-authorship.
-The bibliography and regulatory-scope note state the project’s access-date and
-operator-order limitations.
-
-## Documentation
-
-- [`docs/regulatory-scope.md`](docs/regulatory-scope.md) — legal hierarchy and scope boundary
-- [`docs/mathematical-conventions.md`](docs/mathematical-conventions.md) — domains and operators
-- [`docs/reproducibility.md`](docs/reproducibility.md) — network-free audit commands
-- [`docs/glossary.md`](docs/glossary.md) — terminology
-- [`docs/open-questions.md`](docs/open-questions.md) — unresolved research and application limits
-
-## Repository layout
+## Package structure
 
 ```text
-src/capital_consistency/    dependency-free implementation and CLI
-tests/                      36 unit, exact, adversarial, and regression tests
-experiments/                deterministic certificate/atlas generators
-examples/                   synthetic histories and edge cases
-artifacts/certificates/     reviewed machine-readable witnesses
-artifacts/reports/          technical report and deterministic manifests
-docs/                       public scope and reproducibility documentation
-scripts/                    portable reproduction and release audit
+src/capital_consistency/   formulas, allocation model, uncertainty sets, CLI
+artifacts/certificates/    machine-readable verification targets
+artifacts/reports/         paper and deterministic experiment manifests
+experiments/               exact examples and adversarial atlas
+examples/                  synthetic histories, portfolios, and edge cases
+docs/                      conventions, regulatory scope, and reproducibility
+tests/                     unit, exact, adversarial, property, and regression tests
 ```
 
-Research notebooks, working logs, novelty matrices, LaTeX source, local
-automation instructions, and duplicate release trees are not distributed in
-this repository.
+The independent IRB checker uses its own normal-CDF and inverse-normal
+implementation. Certificate verification reconstructs each claim semantically
+rather than accepting stored intermediate calculations.
 
-## Limitations
+## Regulatory and research foundations
 
-- The simple product identity requires the exact assumptions stated in the
-  report; separately estimated CCF and LGD need not satisfy recordwise loss
-  consistency.
-- Floors, clipping, weighting, aggregation, grading, segmentation, and model
-  coupling can change the result.
-- The corporate functional does not establish EU legal applicability for a
-  particular exposure class.
-- Full nonlinear portfolio optimization is not globally certified.
-- Joint-MoC calculations remain conditional on a valid supplied uncertainty
-  set and action class.
-- Source review was targeted, not an exhaustive priority search.
+The product compensation principle is already present in European regulation
+and supervisory guidance. This project contributes a formal boundary atlas,
+exact counterexamples, and a joint-uncertainty formulation around that
+principle.
 
-## Citation and license
+Primary regulatory sources:
 
-Use [`CITATION.cff`](CITATION.cff) to cite the technical report and versioned
-software release. The implementation is available under the [MIT License](LICENSE).
-Regulatory texts and cited academic works retain their own authorship and terms.
+- [Regulation (EU) 2024/1623 (CRR3)](https://eur-lex.europa.eu/eli/reg/2024/1623/oj)
+- [Consolidated Regulation (EU) No 575/2013](https://eur-lex.europa.eu/eli/reg/2013/575/oj)
+- [EBA/GL/2017/16: PD and LGD estimation and the treatment of defaulted exposures](https://www.eba.europa.eu/regulation-and-policy/model-validation/guidelines-on-pd-lgd-estimation-and-treatment-of-defaulted-exposures)
+
+Statistical and optimization context includes support-function inference,
+distributionally robust optimization, and parameter uncertainty in credit-risk
+capital:
+
+- Kaido, Molinari & Stoye, *Econometrica* 87 (2019),
+  [doi:10.3982/ECTA14075](https://doi.org/10.3982/ECTA14075)
+- Delage & Ye, *Operations Research* 58 (2010),
+  [doi:10.1287/opre.1090.0741](https://doi.org/10.1287/opre.1090.0741)
+- Löffler, *Journal of Banking & Finance* 27 (2003),
+  [doi:10.1016/S0378-4266(02)00277-7](https://doi.org/10.1016/S0378-4266(02)00277-7)
+
+Full citations and the precise relation of each source to the results appear in
+the report.
+
+## Verification
+
+```sh
+python3 -m unittest discover -s tests -p 'test_*.py'
+bash scripts/reproduce_all.sh
+bash scripts/audit_repository.sh
+```
+
+The audit checks all certificates, deterministic manifests, repository
+boundaries, malformed inputs, cleanup behavior, and the independent formula
+cross-checks.
+
+## Citation
+
+Use the preferred paper citation in [`CITATION.cff`](CITATION.cff) and cite the
+specific release used. Author:
+[Maarten Linus Herrmann](https://orcid.org/0009-0005-8721-6588), ORCID
+[`0009-0005-8721-6588`](https://orcid.org/0009-0005-8721-6588).
+
+## License
+
+The software is licensed under [GPL-3.0-or-later](LICENSE). The technical report
+is copyright © 2026 Maarten Linus Herrmann; all rights reserved. Copyleft keeps
+distributed modifications to the certificate and formula implementation under
+the same reciprocal terms. Regulatory texts and cited publications remain
+subject to their original terms.

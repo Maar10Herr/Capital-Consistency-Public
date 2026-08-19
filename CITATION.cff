@@ -1,13 +1,34 @@
 cff-version: 1.2.0
-message: "If you use this research package, cite the technical report and repository version."
-title: "Capital consistency under regulatory credit-risk uncertainty"
+message: "If you use this research package, cite the technical report and versioned release."
+title: "Capital Consistency"
 type: software
-version: 0.1.0
+version: 0.2.0
 date-released: 2026-08-19
 authors:
   - family-names: Herrmann
     given-names: Maarten Linus
     orcid: "https://orcid.org/0009-0005-8721-6588"
 repository-code: "https://github.com/Maar10Herr/Capital-Consistency-Public"
-license: MIT
-abstract: "Exact results, counterexamples, and auditable computations for CCF/EAD–LGD allocation invariance and joint margins of conservatism under EU IRB rules."
+url: "https://github.com/Maar10Herr/Capital-Consistency-Public/releases"
+license: GPL-3.0-or-later
+abstract: >-
+  Exact allocation identities, counterexamples, and auditable computations for
+  CCF/EAD-LGD allocation invariance and joint margins of conservatism under
+  European IRB rules.
+keywords:
+  - credit risk
+  - internal ratings
+  - exposure at default
+  - loss given default
+  - margin of conservatism
+preferred-citation:
+  type: article
+  title: "Capital Consistency under Regulatory Credit-Risk Uncertainty: Allocation Identities, Regulatory Kinks, and Joint Conservatism"
+  authors:
+    - family-names: Herrmann
+      given-names: Maarten Linus
+      orcid: "https://orcid.org/0009-0005-8721-6588"
+  year: 2026
+  month: 8
+  repository-code: "https://github.com/Maar10Herr/Capital-Consistency-Public"
+  notes: "Technical research report, release 0.2.0."
