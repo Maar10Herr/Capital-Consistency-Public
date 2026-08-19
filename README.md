@@ -27,9 +27,9 @@ performing-exposure IRB capital term reduce to weighted moments of the same
 economic-loss atoms:
 
 ```math
-\operatorname{EL}=\sum_i w_i p_i L_i,
+\mathrm{EL}=\sum_i w_i p_i L_i,
 \qquad
-\operatorname{RWA}_0=12.5\sum_i w_i L_i H(p_i,M_i,s_i).
+\mathrm{RWA}_0=12.5\sum_i w_i L_i H(p_i,M_i,s_i).
 ```
 
 This yields four concrete results:
