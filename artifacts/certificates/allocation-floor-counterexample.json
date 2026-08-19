@@ -1,0 +1,29 @@
+{
+  "allocations": [
+    {
+      "ccf": "0",
+      "drawn": "100",
+      "ead": "100",
+      "realised_lgd": "1/10",
+      "undrawn": "100",
+      "unfloored_product": "10"
+    },
+    {
+      "ccf": "1",
+      "drawn": "100",
+      "ead": "200",
+      "realised_lgd": "1/20",
+      "undrawn": "100",
+      "unfloored_product": "10"
+    }
+  ],
+  "certificate_type": "allocation_floor_counterexample/v1",
+  "claim": "A fixed loss is allocation invariant before an LGD floor but not after a 1/10 LGD floor.",
+  "claim_status": "proved_by_exact_rational_witness",
+  "economic_loss": "10",
+  "floored_products": [
+    "10",
+    "20"
+  ],
+  "lgd_floor": "1/10"
+}

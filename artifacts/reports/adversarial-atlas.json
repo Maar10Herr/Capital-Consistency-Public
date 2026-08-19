@@ -1,0 +1,21 @@
+{
+  "claim_status": "numerically_verified_on_stated_finite_set",
+  "floor_break_count": 1962,
+  "maximum_raw_absolute_error": 5.4569682106375694e-12,
+  "pd_grid": {
+    "lgd": 0.45,
+    "lower": 0.001,
+    "maturity": 2.5,
+    "maximizer_on_grid": 0.2962084,
+    "maximum_capital_per_ead_on_grid": 0.1990641868453222,
+    "points": 20001,
+    "upper": 0.999
+  },
+  "random_cases": 5000,
+  "raw_invariance_failures": [],
+  "seed": 20260806,
+  "tolerances": {
+    "absolute": 1e-09,
+    "relative": 1e-11
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "drawn": 100.0,
+  "undrawn": 100.0,
+  "ccf_values": [-0.5, 0.0, 0.5, 1.0, 2.0],
+  "economic_loss": 10.0,
+  "pd": 0.01,
+  "maturity": 2.5
+}

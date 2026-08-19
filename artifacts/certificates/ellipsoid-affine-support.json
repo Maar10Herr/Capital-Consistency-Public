@@ -1,0 +1,40 @@
+{
+  "center": [
+    0.0,
+    0.0
+  ],
+  "certificate_type": "ellipsoid_affine_support/v2",
+  "claim_status": "proved_closed_form_with_independent_primal_and_upper_certificate",
+  "claimed_upper": 1.4142135623730951,
+  "component_box_upper": 2.0,
+  "covariance": [
+    [
+      1.0,
+      0.0
+    ],
+    [
+      0.0,
+      1.0
+    ]
+  ],
+  "factor": [
+    [
+      1.0,
+      0.0
+    ],
+    [
+      0.0,
+      1.0
+    ]
+  ],
+  "gradient": [
+    1.0,
+    1.0
+  ],
+  "primal_z": [
+    0.7071067811865475,
+    0.7071067811865475
+  ],
+  "radius": 1.0,
+  "strict_gap": 0.5857864376269049
+}

@@ -1,0 +1,10 @@
+{
+  "drawn": 100.0,
+  "undrawn": 100.0,
+  "ccf_lower": -0.5,
+  "ccf_upper": 2.0,
+  "economic_loss": 10.0,
+  "lgd_floor": 0.1,
+  "lgd_upper_clip": 1.0,
+  "ccf_floor": 0.0
+}

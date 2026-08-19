@@ -1,0 +1,40 @@
+{
+  "arithmetic": "IEEE-754 floating point",
+  "assumptions": [
+    "corporate performing-exposure IRB test functional",
+    "random cases use fixed loss, PD, maturity and only vary CCF allocation",
+    "PD result is a finite grid, not a certified global optimizer"
+  ],
+  "claim_status": "finite numerical regression evidence, not proof or certified global optimization",
+  "command": [
+    "python3",
+    "experiments/run_adversarial_atlas.py"
+  ],
+  "git_commit": null,
+  "input_bundle_sha256": "05314f53b0192e57aaadd783443b9f8ed41abe0116f2d39824c6386b81febf0d",
+  "inputs": {
+    "experiments/run_adversarial_atlas.py": "ffd659c764af74af8277f9ecb8f61dc7fa6c875a1639b5c21c863a90654f7b57",
+    "src/capital_consistency/audit.py": "c3c6a7c56a4f758be8ab8fdeaa3a8e42bcc4119498c5ac8d47f2706ed75e176d",
+    "src/capital_consistency/decompositions.py": "5c812386de78655aeeaacc4c4b81b815014098181e10163457584bdc38b276f0",
+    "src/capital_consistency/irb.py": "5924f27ba450f808f4926bc66b3532c9ecac48ad24ce9691512cc414623ee1b1",
+    "src/capital_consistency/numeric.py": "7d5f681ad53ecf52ef881bbbaf9b95c70d4bb99591a32dac94732c7b14f858c8"
+  },
+  "manifest_schema": "capital_consistency_run/v2",
+  "outputs": {
+    "artifacts/reports/adversarial-atlas.json": "5fbabc1bb34fad998624ea05c5fed8facd63a49de9081637f49edf6f4bbe4b93"
+  },
+  "package_versions": {
+    "capital-consistency": "0.1.0",
+    "standard_library_only": true
+  },
+  "platform": "macOS-15.7.3-arm64-arm-64bit",
+  "python": "3.9.6 (default, Apr 30 2025, 02:07:17) \n[Clang 17.0.0 (clang-1700.0.13.5)]",
+  "random_seed": 20260806,
+  "solver": "deterministic seeded random enumeration plus finite PD grid",
+  "solver_status": "completed on the stated finite sample and grid",
+  "timestamp_utc": "2026-08-19T06:18:22.128162+00:00",
+  "tolerances": {
+    "absolute": 1e-09,
+    "relative": 1e-11
+  }
+}
