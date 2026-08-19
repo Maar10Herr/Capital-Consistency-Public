@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0",
+  "history_id": "repeat-default-synthetic-001",
+  "observation_unit": "facility",
+  "limits": [
+    {"time": 0.0, "commitment": 200.0, "drawn": 100.0},
+    {"time": 1.0, "commitment": 200.0, "drawn": 140.0}
+  ],
+  "cashflows": [
+    {"time": 0.5, "amount": 40.0, "discount_factor": 1.0, "kind": "drawing", "default_episode": 1},
+    {"time": 0.75, "amount": 30.0, "discount_factor": 0.99, "kind": "recovery", "default_episode": 1},
+    {"time": 1.5, "amount": 5.0, "discount_factor": 0.97, "kind": "recovery_cost", "default_episode": 2},
+    {"time": 2.0, "amount": 10.0, "discount_factor": 0.95, "kind": "recovery", "default_episode": 2}
+  ],
+  "states": [
+    {"time": 0.4, "state": "default", "default_episode": 1},
+    {"time": 0.8, "state": "cured", "default_episode": 1},
+    {"time": 0.8, "state": "probation", "default_episode": 1},
+    {"time": 1.4, "state": "default", "default_episode": 2},
+    {"time": 2.1, "state": "terminated", "default_episode": 2}
+  ]
+}

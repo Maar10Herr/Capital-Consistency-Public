@@ -1,0 +1,44 @@
+{
+  "allocations": [
+    {
+      "default_weighted_lgd": "1/10",
+      "eads": [
+        "100",
+        "100"
+      ],
+      "exposure_weighted_lgd": "1/10",
+      "lgds": [
+        "1/10",
+        "1/10"
+      ],
+      "losses": [
+        "10",
+        "10"
+      ]
+    },
+    {
+      "default_weighted_lgd": "2/15",
+      "eads": [
+        "50",
+        "150"
+      ],
+      "exposure_weighted_lgd": "1/10",
+      "lgds": [
+        "1/5",
+        "1/15"
+      ],
+      "losses": [
+        "10",
+        "10"
+      ]
+    }
+  ],
+  "certificate_type": "allocation_weighting_counterexample/v1",
+  "claim": "Default-weighted LGD calibration followed by total-EAD application is not allocation invariant.",
+  "claim_status": "proved_by_exact_rational_witness",
+  "default_weighted_products": [
+    "20",
+    "80/3"
+  ],
+  "total_economic_loss": "20"
+}

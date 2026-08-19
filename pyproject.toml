@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "capital-consistency"
+version = "0.1.0"
+description = "Auditable exact examples for IRB allocation invariance and joint margins of conservatism"
+requires-python = ">=3.9"
+dependencies = []
+
+[project.scripts]
+capital-consistency = "capital_consistency.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
