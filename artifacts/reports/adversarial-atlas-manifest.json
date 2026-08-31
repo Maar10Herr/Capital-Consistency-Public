@@ -32,7 +32,7 @@
   "random_seed": 20260806,
   "solver": "deterministic seeded random enumeration plus finite PD grid",
   "solver_status": "completed on the stated finite sample and grid",
-  "timestamp_utc": "2026-08-19T06:18:22.128162+00:00",
+  "timestamp_utc": "2026-08-31T13:21:55.710858+00:00",
   "tolerances": {
     "absolute": 1e-09,
     "relative": 1e-11

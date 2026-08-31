@@ -35,7 +35,7 @@
   "random_seed": null,
   "solver": "closed-form identities with independent certificate verification",
   "solver_status": "completed",
-  "timestamp_utc": "2026-08-19T06:22:14.604717+00:00",
+  "timestamp_utc": "2026-08-31T13:21:55.309837+00:00",
   "tolerances": {
     "ellipsoid_float_comparison": 1e-12
   }
