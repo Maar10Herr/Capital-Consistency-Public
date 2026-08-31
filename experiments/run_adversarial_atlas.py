@@ -74,6 +74,7 @@ def main():
         command=["python3", "experiments/run_adversarial_atlas.py"],
         inputs=[
             Path(__file__).resolve(),
+            ROOT / "src" / "capital_consistency" / "__init__.py",
             ROOT / "src" / "capital_consistency" / "audit.py",
             ROOT / "src" / "capital_consistency" / "decompositions.py",
             ROOT / "src" / "capital_consistency" / "irb.py",

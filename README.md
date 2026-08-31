@@ -102,9 +102,9 @@ docs/                      conventions, regulatory scope, and reproducibility
 tests/                     unit, exact, adversarial, property, and regression tests
 ```
 
-The independent IRB checker uses its own normal-CDF and inverse-normal
-implementation. Certificate verification reconstructs each claim semantically
-rather than accepting stored intermediate calculations.
+The independent IRB checker has separate normal-CDF and inverse-normal
+implementations. Certificate verification reconstructs each claim from source
+records and independently coded formulas.
 
 ## Regulatory and research foundations
 
