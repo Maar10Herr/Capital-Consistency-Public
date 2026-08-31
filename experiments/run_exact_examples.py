@@ -117,6 +117,7 @@ def main():
         command=["capital-consistency", "reproduce", "core-exact"],
         inputs=[
             Path(__file__).resolve(),
+            ROOT / "src" / "capital_consistency" / "__init__.py",
             ROOT / "src" / "capital_consistency" / "audit.py",
             ROOT / "src" / "capital_consistency" / "exact.py",
             ROOT / "src" / "capital_consistency" / "numeric.py",

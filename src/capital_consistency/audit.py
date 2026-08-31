@@ -2,11 +2,10 @@
 
 import hashlib
 import json
-import platform
-import sys
-from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, Iterable, Mapping, Optional
+
+from . import __version__
 
 
 def sha256_file(path: Path) -> str:
@@ -47,17 +46,9 @@ def run_manifest(
     input_hashes = {manifest_name(path): sha256_file(path) for path in inputs}
     output_hashes = {manifest_name(path): sha256_file(path) for path in outputs}
     return {
-        "manifest_schema": "capital_consistency_run/v2",
-        "timestamp_utc": datetime.now(timezone.utc).isoformat(),
+        "manifest_schema": "capital_consistency_run/v3",
         "command": list(command),
-        # Public manifests deliberately do not inspect or record repository
-        # metadata. Reproducibility is based on content hashes and stated
-        # assumptions, so the bundle remains portable and contains no private
-        # commit identifiers.
-        "git_commit": None,
-        "python": sys.version,
-        "package_versions": {"capital-consistency": "0.1.0", "standard_library_only": True},
-        "platform": platform.platform(),
+        "package_versions": {"capital-consistency": __version__, "standard_library_only": True},
         "inputs": input_hashes,
         "input_bundle_sha256": canonical_json_hash(input_hashes),
         "outputs": output_hashes,

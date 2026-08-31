@@ -11,31 +11,28 @@
     "reproduce",
     "core-exact"
   ],
-  "git_commit": null,
-  "input_bundle_sha256": "33bedc3e9c572a66626a2ab8ab11d77cb431b1c7770644aea5b3f9b5c8e3138f",
+  "input_bundle_sha256": "8d6d919d44c72efe11a023aeeb63d00514b3543b5486a08df75a1c753967e7ec",
   "inputs": {
-    "experiments/run_exact_examples.py": "4e25963b3b8f043ee85321b331e751a3428e9ef5a9f78a2f0aa88ba18730387e",
-    "src/capital_consistency/audit.py": "c3c6a7c56a4f758be8ab8fdeaa3a8e42bcc4119498c5ac8d47f2706ed75e176d",
+    "experiments/run_exact_examples.py": "d4b2c7c97c4a007c172c8c33375158737b86fcda98fdb2e818d6ed152b37c216",
+    "src/capital_consistency/__init__.py": "08d1964e2bcc5a92d75ae2782ab5507b819d6955ce340eb0e8b0ae4e0284363c",
+    "src/capital_consistency/audit.py": "aed44ff95c8ee1f4c4e08920daaca9151f2b93e3d3139cfb1a02034b7577427b",
     "src/capital_consistency/exact.py": "993db969e74f7a7cb0547afb578b12590baee065e818a2f62ae6d6b4fdccba7f",
     "src/capital_consistency/numeric.py": "7d5f681ad53ecf52ef881bbbaf9b95c70d4bb99591a32dac94732c7b14f858c8",
     "src/capital_consistency/uncertainty_sets.py": "a83e9b78b3f1cbecdd087921e7429926ac773f05da29761574f19beb04982d81"
   },
-  "manifest_schema": "capital_consistency_run/v2",
+  "manifest_schema": "capital_consistency_run/v3",
   "outputs": {
     "artifacts/certificates/allocation-floor-counterexample.json": "53b036f40ebe03cea7a9cf49e9ef21963834d691486532907e67797ae5d0b811",
     "artifacts/certificates/allocation-weighting-counterexample.json": "95d01ca12f5a6d45b6cc54174473efb168929f8972627dda7ec2551df0c63398",
     "artifacts/certificates/ellipsoid-affine-support.json": "e72a060d3f7f0a8b19dd0a3338db648ea7a8559aff9f877fd698f99fb897c4a2"
   },
   "package_versions": {
-    "capital-consistency": "0.1.0",
+    "capital-consistency": "0.2.0",
     "standard_library_only": true
   },
-  "platform": "macOS-15.7.3-arm64-arm-64bit",
-  "python": "3.9.6 (default, Apr 30 2025, 02:07:17) \n[Clang 17.0.0 (clang-1700.0.13.5)]",
   "random_seed": null,
   "solver": "closed-form identities with independent certificate verification",
   "solver_status": "completed",
-  "timestamp_utc": "2026-08-31T13:21:55.309837+00:00",
   "tolerances": {
     "ellipsoid_float_comparison": 1e-12
   }
