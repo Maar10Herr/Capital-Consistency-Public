@@ -135,6 +135,8 @@ def verify_weighting_counterexample(certificate: Dict[str, Any]) -> bool:
 
 def verify_certificate_data(certificate: Dict[str, Any]) -> bool:
     try:
+        if not isinstance(certificate, dict):
+            return False
         certificate_type = certificate.get("certificate_type")
         if certificate_type == "allocation_floor_counterexample/v1":
             return verify_allocation_floor(certificate)
