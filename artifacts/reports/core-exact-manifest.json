@@ -11,10 +11,10 @@
     "reproduce",
     "core-exact"
   ],
-  "input_bundle_sha256": "ddd91b11519c74db5aa4cb39a6c01e4089faa833bb8fa064747ed72c02cdacc4",
+  "input_bundle_sha256": "21f84c01abf7272bc518343d1a9179186111272300baaa2c0dd34c8594ba5b24",
   "inputs": {
     "experiments/run_exact_examples.py": "d4b2c7c97c4a007c172c8c33375158737b86fcda98fdb2e818d6ed152b37c216",
-    "src/capital_consistency/__init__.py": "08d1964e2bcc5a92d75ae2782ab5507b819d6955ce340eb0e8b0ae4e0284363c",
+    "src/capital_consistency/__init__.py": "f929c4c5e33e6a2479365f6e300d6d4150cff1033c0eefe26a25b4d70e46b900",
     "src/capital_consistency/audit.py": "6bd6f2e3619e7341928c20842ae4f670efea9da2050c26af0ec43ad15e0aab80",
     "src/capital_consistency/exact.py": "993db969e74f7a7cb0547afb578b12590baee065e818a2f62ae6d6b4fdccba7f",
     "src/capital_consistency/numeric.py": "7d5f681ad53ecf52ef881bbbaf9b95c70d4bb99591a32dac94732c7b14f858c8",
@@ -27,7 +27,7 @@
     "artifacts/certificates/ellipsoid-affine-support.json": "e72a060d3f7f0a8b19dd0a3338db648ea7a8559aff9f877fd698f99fb897c4a2"
   },
   "package_versions": {
-    "capital-consistency": "0.2.0",
+    "capital-consistency": "0.2.1",
     "standard_library_only": true
   },
   "random_seed": null,

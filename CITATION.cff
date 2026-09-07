@@ -2,8 +2,8 @@ cff-version: 1.2.0
 message: "If you use this research package, cite the technical report and versioned release."
 title: "Capital Consistency"
 type: software
-version: 0.2.0
-date-released: 2026-08-19
+version: 0.2.1
+date-released: 2026-09-07
 authors:
   - family-names: Herrmann
     given-names: Maarten Linus
@@ -31,4 +31,4 @@ preferred-citation:
   year: 2026
   month: 8
   repository-code: "https://github.com/Maar10Herr/Capital-Consistency-Public"
-  notes: "Technical research report, release 0.2.0."
+  notes: "Technical research report, software release 0.2.1."
