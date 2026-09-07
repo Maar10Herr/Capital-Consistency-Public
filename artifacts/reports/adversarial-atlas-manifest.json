@@ -10,10 +10,10 @@
     "python3",
     "experiments/run_adversarial_atlas.py"
   ],
-  "input_bundle_sha256": "c334cf17e04ce2f1f445408891ec85487407947a2edbf57b36c568eed9bb9158",
+  "input_bundle_sha256": "d75fb2d4706215d295f860f4d26299643c2aa40b1995dbecd75e1bfb08d02462",
   "inputs": {
     "experiments/run_adversarial_atlas.py": "3b40ee54db5b2b872ebdee809e39385fa84e784210b2e280db1af658e67859ee",
-    "src/capital_consistency/__init__.py": "08d1964e2bcc5a92d75ae2782ab5507b819d6955ce340eb0e8b0ae4e0284363c",
+    "src/capital_consistency/__init__.py": "f929c4c5e33e6a2479365f6e300d6d4150cff1033c0eefe26a25b4d70e46b900",
     "src/capital_consistency/audit.py": "6bd6f2e3619e7341928c20842ae4f670efea9da2050c26af0ec43ad15e0aab80",
     "src/capital_consistency/decompositions.py": "5c812386de78655aeeaacc4c4b81b815014098181e10163457584bdc38b276f0",
     "src/capital_consistency/irb.py": "5924f27ba450f808f4926bc66b3532c9ecac48ad24ce9691512cc414623ee1b1",
@@ -24,7 +24,7 @@
     "artifacts/reports/adversarial-atlas.json": "5fbabc1bb34fad998624ea05c5fed8facd63a49de9081637f49edf6f4bbe4b93"
   },
   "package_versions": {
-    "capital-consistency": "0.2.0",
+    "capital-consistency": "0.2.1",
     "standard_library_only": true
   },
   "random_seed": 20260806,
