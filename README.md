@@ -14,6 +14,7 @@ tools for European internal-ratings credit-risk calculations.
 > reporting date.
 
 **[Read the technical report](artifacts/reports/capital-consistency-technical-report.pdf)** ·
+**[Paper source](paper/main.tex)** ·
 **[Download the latest release](https://github.com/Maar10Herr/Capital-Consistency-Public/releases/latest)**
 
 ## Results at a glance
@@ -37,19 +38,20 @@ This yields four concrete results:
 1. **Exact invariance criteria.** Allocation is immaterial precisely when the
    corresponding weighted loss moments remain fixed.
 2. **Sharp endpoint reduction.** Under common LGD floors or clips and interval
-   CCF uncertainty, the worst allocation is attained at the maximum feasible
-   EAD endpoint.
+   CCF uncertainty, fixed loss, and a fixed nonnegative coefficient, the worst
+   allocation is attained at the maximum feasible EAD endpoint.
 3. **Boundary counterexamples.** Exact rational witnesses show how binding
    floors, default weighting, and coefficient-changing transfers break simple
    product invariance.
 4. **Joint conservatism discipline.** Confidence-set validity and worst-case
    target optimization are separate steps; the corporate unexpected-loss
    coefficient must be optimized directly because it is not globally
-   increasing in PD.
+   increasing in PD. No confidence procedure or coverage theorem is supplied
+   for dependent PD, LGD, and CCF estimators.
 
-The unified collapse-or-endpoint theorem identifies when allocation uncertainty
-disappears, when it becomes a one-endpoint calculation, and when grade, segment,
-weight, or confidence-set coupling requires joint optimization.
+For the stated separable model, the collapse-or-endpoint result identifies when
+allocation uncertainty disappears or reduces to an endpoint. Coupling to grade,
+segment, weights, or the confidence set can invalidate that reduction.
 
 ## Quick start
 

@@ -1,0 +1,264 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[margin=0.82in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm,booktabs,hyperref,microtype,xcolor}
+\definecolor{linkblue}{HTML}{1D4E89}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=black,
+  citecolor=linkblue,
+  urlcolor=linkblue,
+  pdftitle={Capital Consistency under Regulatory Credit-Risk Uncertainty: Allocation Identities, Regulatory Kinks, and Joint Conservatism},
+  pdfauthor={Maarten Linus Herrmann (ORCID: 0009-0005-8721-6588)},
+  pdfsubject={Technical research report, draft},
+  pdfkeywords={credit risk, IRB, CCF, EAD, LGD, margin of conservatism, regulatory uncertainty}
+}
+\setlength{\parskip}{2.5pt}
+\setlength{\parindent}{1.2em}
+\setlength{\abovedisplayskip}{6pt plus 2pt minus 2pt}
+\setlength{\belowdisplayskip}{6pt plus 2pt minus 2pt}
+\raggedbottom
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}{Corollary}
+\newtheorem{example}{Example}
+\title{Capital Consistency under Regulatory Credit-Risk Uncertainty:\\Allocation Identities, Regulatory Kinks, and Joint Conservatism}
+\author{Maarten Linus Herrmann\\
+\small Erasmus School of Economics\\
+\small Erasmus University Rotterdam\\
+\small\href{https://orcid.org/0009-0005-8721-6588}{ORCID: 0009-0005-8721-6588}}
+\date{\small Technical research report, revised draft}
+
+\usepackage{xurl}
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Reallocating post-default drawings between exposure at default and loss given
+default can preserve an economic-loss product, but this identity does not by
+itself imply invariance of regulatory capital. We study the boundary of that
+invariance in a fixed-history model. For loss-consistent records, expected loss
+and the unadjusted performing-exposure capital term are invariant exactly when
+their respective weighted loss moments are constant. With a common nonnegative
+coefficient, a fixed loss and a common floor and clip applied to loss given
+default, the adjusted capital term is nondecreasing in exposure at default;
+interval conversion-factor uncertainty therefore reduces to an endpoint.
+Rational examples show failures of product invariance after a binding floor or
+default-weighted aggregation. We also separate the validity of a joint
+uncertainty set from optimization of capital over that set and its attainable
+operational actions. The paper does not construct a confidence procedure for
+dependent PD, LGD and CCF estimators. The results are mathematical statements
+about specified operators, motivated by the EU internal-ratings framework;
+exposure-class applicability and legal operator order require specialist review.
+\end{abstract}
+
+\section{Research question and contribution}
+
+For retail exposures, CRR3 permits future drawings to be represented through
+conversion factors or LGD, with corresponding treatment of the LGD numerator
+and denominator; non-retail post-default drawings enter IRB-CCF
+\cite{crr3}. EBA/GL/2017/16 explains the related compensation principle for
+realised LGD and post-default drawings \cite{eba2017}. The consultative CCF
+methodology makes allocation, multiple defaults and post-default drawings
+operationally salient \cite{ebaccf2025}. Statistical context comes from
+projection inference, support functions, parameter-uncertainty capital and
+distributionally robust optimization
+\cite{kaido2019,delage2010,loeffler2003,baviera2022}.
+
+The compensation principle is established prior work, not a claim of this paper.
+We identify conditions under which a specified calculation preserves it and
+construct exact boundary examples where it does not. We formulate joint
+conservatism conditional on a supplied uncertainty set and operational action
+set; we do not construct a joint confidence procedure or establish its coverage.
+The regulatory discussion is bounded to the sources and dates cited here and is
+not a legal opinion.
+
+\section{Fixed-history allocation model}
+
+Fix an economic history $h$ containing commitments, drawn balances, signed discounted cash flows, recoveries and costs, default/cure/probation states, episode labels, and observation-unit labels. A rule $\delta$ maps $h$ into records $i\in I_\delta$ with drawn exposure $D_i$, undrawn amount $U_i$, CCF $q_i$, EAD $A_i=D_i+q_iU_i>0$, economic-loss numerator $L_i\ge0$, LGD $g_i$, PD $p_i$, maturity $M_i$, segment $s_i$, and nonnegative weight $w_i$. A loss-consistent record satisfies
+\[
+g_i=L_i/A_i. \tag{1}
+\]
+This is a construction assumption. Separately fitted CCF and LGD models need not satisfy it observation by observation or after aggregation.
+
+For the applicable performing-exposure IRB branch, write $H(p,M,s)$ for the coefficient excluding LGD, EAD, and the capital-to-RWA factor. Then
+\[
+\operatorname{EL}(\delta)=\sum_i w_ip_iA_ig_i,
+\qquad
+\operatorname{RWA}_0(\delta)=12.5\sum_iw_iA_ig_iH(p_i,M_i,s_i). \tag{2}
+\]
+The corporate test functional implements specified Basel/CRR3-style correlation and maturity expressions; legal applicability and operator order by exposure class remain separate \cite{baselcre31,crrconsolidated}.
+
+\section{Allocation results}
+
+\begin{theorem}[Exact moment criteria]
+On the domain above, EL is invariant over an allocation class if and only if $\sum_iw_ip_iL_i$ is constant. Unadjusted performing-exposure RWA is invariant if and only if $\sum_iw_iL_iH(p_i,M_i,s_i)$ is constant.
+\end{theorem}
+
+\begin{proof}
+Substitute (1) into (2). Necessity and sufficiency are immediate because the equalities hold record by record.
+\end{proof}
+
+The structural content appears after allocations are lifted to common economic atoms. Let $x(\delta)$ be the vector of weighted loss masses and let
+\[
+V=\operatorname{span}\{x(\delta)-x(\delta'): \delta,\delta'\in\mathcal D(h)\}.
+\]
+A fixed coefficient vector $c$ yields invariant $c^\top x(\delta)$ exactly when $c\in V^\perp$. If arbitrarily small loss transfers are permitted along a graph, $c$ must be constant on each transfer-connected component. Total loss conservation alone is not enough when transfers cross PD, maturity, segment, or weight coefficients.
+
+For lower LGD floor $\ell$ and upper clip $u$, $0\le\ell\le u$, the operational loss product is
+\[
+\psi_{\ell,u}(A,L)=A\min\{u,\max(\ell,L/A)\}
+=\min\{uA,\max(\ell A,L)\}. \tag{3}
+\]
+It is nondecreasing in $A$ and piecewise linear, but generally neither convex nor concave when both bounds matter.
+
+\begin{proposition}[Sharp endpoint reduction]
+Let $A(q)=D+U\max(q,q_f)>0$, with $U\ge0$ and $q\in[q_-,q_+]$. For fixed $L,\ell,u$ and a fixed nonnegative IRB coefficient, the minimum and maximum adjusted capital occur at $q_-$ and $q_+$ respectively.
+\end{proposition}
+
+\begin{proof}
+Both $A(q)$ and (3) are nondecreasing. The endpoints are feasible.
+\end{proof}
+
+If finite total facility amount $B=D+U\ge0$ is fixed and individual finite $q\in[q_-,q_+]$, introduce converted undrawn exposure $X=qU$. After eliminating $q$, the exact raw feasible projection is
+\[
+D+U=B,\quad 0\le U\le B,\quad q_-U\le X\le q_+U,\quad A=D+X, \tag{4}
+\]
+a polytope with $A\in[B\min(1,q_-),B\max(1,q_+)]$. A realised-LGD domain requiring $A>0$ must intersect this raw set with that strict inequality (or impose $A\ge\varepsilon>0$ to retain a closed polytope). The full graph retaining $X=qU$ is bilinear and generally nonconvex. For a CCF shared across records, the exact graph remains nonconvex; under a CCF-independent base polytope, however, its convex hull and every unrestricted linear support problem reduce exactly to the two CCF endpoint graphs.
+
+There is also a sharp allocation-only support bound when conserved nonnegative loss is the sole restriction. If $x_i\ge0$, $\sum_i x_i=L$, and the coefficients $c_i$ are fixed, then
+\[
+L\min_i c_i\le c^\top x\le L\max_i c_i. \tag{5}
+\]
+Both bounds are attained by concentrating all loss on an extreme-coefficient atom. More generally, for a nonempty coefficient set $C$ with finite coordinate supports,
+\[
+\sup_{c\in C,\,x\ge0,\,\mathbf 1^\top x=L}c^\top x
+=L\max_i h_C(e_i). \tag{6}
+\]
+The case $L=0$ is handled separately and has value zero. These classical linear-programming bounds quantify the largest possible failure of common-atom invariance when only total loss is conserved.
+
+\begin{example}[Binding LGD floor]
+Fix $D=U=100$ and $L=10$. The allocations $q=0$ and $q=1$ give $(A,g)=(100,1/10)$ and $(200,1/20)$, preserving $Ag=10$. An LGD floor $1/10$ gives operational products 10 and 20. This is an exact rational witness.
+\end{example}
+
+This and the weighting example below are abstract mathematical witnesses
+motivated by regulatory-type operators.  Their legal co-feasibility for a
+specific exposure class depends on the applicable EU operator stack.
+
+\begin{example}[Default weighting]
+Two facilities each lose 10. EAD vectors $(100,100)$ and $(50,150)$ both preserve each facility's loss and total EAD. Default-count-weighted mean LGD followed by application to total EAD gives 20 for the first allocation and $80/3$ for the second. Exposure weighting gives 20 for both. Thus calibration and aggregation order are part of the invariance problem.
+\end{example}
+
+An exact named decomposition of a capital difference is available by
+Boolean-lattice M\"obius inversion after valid baseline/target hybrid
+calculations are defined.  The resulting split depends on the baseline and
+category definitions; a baseline-free attribution requires additional axioms.
+
+\section{Joint margin of conservatism}
+
+Let $\eta$ collect PD, LGD, CCF, allocation, weights, segments, deficiencies, and floor status. Let $C_\alpha$ be a joint confidence region or deterministic uncertainty set with an explicitly stated interpretation. For target risks $R_j$, an operational choice $\tilde\eta$ is valid relative to $C_\alpha$ when
+\[
+R_j(\tilde\eta)\ge \sup_{\eta\in C_\alpha}R_j(\eta)\quad\text{for every required }j. \tag{7}
+\]
+The construction/coverage of $C_\alpha$ and optimization in (7) are separate validity layers. Projection of a full joint region can be conservative relative to target-calibrated inference \cite{kaido2019}.
+
+For one scalar target and a fixed valid set, put $b=R(\hat\eta)$, $M=\sup_{C_\alpha}R$, $V=\{R(t):t\in\mathcal T\}$, and $v_*=\inf(V\cap[M,\infty))$ when that set is nonempty. The infimum nonnegative risk-scale uplift is $[v_*-b]_+$. If $V$ contains $\max\{b,M\}$, this is the attained value
+\[
+\max\{0,\sup_{\eta\in C_\alpha}R(\eta)-R(\hat\eta)\}. \tag{8}
+\]
+If the threshold is only approachable, the value is an infimum rather than an
+attained minimum. Equation (8) is conditional on the chosen set and leaves the
+parameter representation and statistical construction unspecified.
+
+Separate parameter bounds are sufficient when the joint component-wise upper event has coverage at least $1-\alpha$ and every target is coordinatewise nondecreasing on the relevant domain. Marginal 95\% bounds have joint coverage $0.95^2=0.9025$ under independence in two dimensions. With arbitrary dependence, Bonferroni is valid and the union bound is sharp given only marginal failure bounds.
+
+For affine $R(\theta)=a^\top\theta+b$ and ellipsoid $C=\{\mu+\Sigma^{1/2}z:\|z\|_2\le r\}$,
+\[
+\sup_{\theta\in C}R(\theta)=a^\top\mu+b+r\sqrt{a^\top\Sigma a}. \tag{9}
+\]
+This classical support formula remains valid for singular
+$\Sigma\succeq0$.  For a nonlinear or kinked target, gradient substitution is
+a local approximation rather than an exact support calculation.
+
+Category-wise affine margins add exactly only under a compatible joint geometry. If each category set $\mathcal U_k$ and a nonempty coupling set $\Gamma\subseteq\prod_k\mathcal U_k$ are compact, then
+\[
+\sup_{e\in\Gamma}R\!\left(\hat\theta+\sum_k e_k\right)
+\le R(\hat\theta)+\sum_k h_{\mathcal U_k}(a). \tag{10}
+\]
+Equality holds exactly when $\Gamma$ contains a tuple simultaneously attaining every category support. For nonlinear targets, the analogous one-at-a-time increments add exactly only when the total higher-order M\"obius interaction is zero; monotonicity alone does not sign the error.
+
+Most importantly, the corporate unexpected-loss kernel is not globally increasing in PD. As $p\uparrow1$, its conditional-default term and $p$ both tend to one, so their difference and the capital coefficient tend to zero, while the coefficient is positive at ordinary interior PD. In the implementation with LGD 0.45 and maturity 2.5, $k(0.30)\approx0.19905$ but $k(0.90)\approx0.04327$. Upper PD can therefore lower RWA even though it raises expected loss. A direct capital bound must optimize the actual target.
+
+For one performing record this joint EL/RWA action has an exact one-dimensional reduction. Let effective loss $Y\in[\underline Y,\overline Y]$, PD $p\in P\subset(0,1)$, and positive continuous unexpected-loss coefficient $\kappa(p)$. Thresholds $pY\ge M_E$ and $12.5\kappa(p)Y\ge M_K$ reduce to global search over
+\[
+Y^*(p)=\max\left\{\underline Y,\frac{M_E}{p},\frac{M_K}{12.5\kappa(p)}\right\}, \tag{11}
+\]
+restricted to $Y^*(p)\le\overline Y$. This preserves PD nonmonotonicity. Given
+only finite marginal failure probabilities, the sharp lower simultaneous
+coverage is the Bonferroni bound; with finite parameter marginals and unknown
+coupling, worst expected capital is a multi-marginal transport linear program.
+These information limits govern any estimator built from the marginal inputs.
+
+\section{Unified collapse-or-endpoint result}
+
+Suppose nonempty statistical and allocation domains are given, statistical uncertainty determines a nonnegative coefficient $c(\theta)$ with finite supremum, and allocation determines only $A(q)$, with fixed loss $L$. Then
+\[
+R(\theta,q)=c(\theta)\psi_{\ell,u}(A(q),L). \tag{12}
+\]
+If no floor or clip binds, allocation uncertainty collapses exactly because $\psi=L$. With common floor/clip and interval CCF uncertainty,
+\[
+\sup_{\theta\in C,\,q\in[q_-,q_+]}R(\theta,q)
+=\left(\sup_{\theta\in C}c(\theta)\right)\psi_{\ell,u}(A(q_+),L). \tag{13}
+\]
+Thus the joint supremum factorizes and its allocation part reduces to the upper CCF endpoint in this separable nonnegative class. Iterated suprema commute for every functional on a fixed Cartesian product. Coupling allocation to grade, PD, maturity, segment, weights, or the confidence set can instead break the product factorization and endpoint reduction. Generic sup/inf minimax interchange additionally requires compactness and convexity/concavity; discrete segmentation and regulatory kinks do not supply these assumptions.
+
+\section{Reproducibility of the examples}
+
+The accompanying repository contains three machine-readable certificates. The floor and default-weighting examples are checked by exact rational recomputation: the verifier checks the stated inputs, positive exposures, loss consistency, and the claimed distinct adjusted products. For the affine ellipsoid example, the verifier checks the covariance factorization, primal feasibility, and agreement of the primal objective and Cauchy upper bound with the claimed value, using absolute and relative tolerances of $10^{-12}$. Thus the first two checks are exact; the third is a floating-point check of an analytically proved support formula, not an exact-arithmetic certificate. These example checks do not replace the proofs or establish statistical coverage.
+
+\section{Scope and implications}
+
+The allocation analysis contributes an exact boundary atlas, common-atom
+criterion, polytope reduction and small rational counterexamples around the
+established product-compensation principle.  The joint-margin analysis links
+those allocation results to confidence-set validity and direct optimization of
+the kinked IRB target.  Target-calibrated finite-sample or uniform-asymptotic
+coverage for dependent estimators remains a separate statistical research
+problem.
+
+The collapse-or-endpoint theorem is the central synthesis: it separates
+conditions under which allocation ambiguity vanishes or reduces to an endpoint,
+and cases where the separation can fail under statistical or structural coupling.  The results concern the stated model, and the computations are finite checks,
+not a proof of regulatory applicability. The legal operator order and
+exposure-class applicability remain matters for specialist review.
+
+\begin{samepage}
+\par\medskip
+\noindent\textbf{Result map.}
+\begin{center}
+\centering
+\begin{tabular}{p{0.27\linewidth}p{0.65\linewidth}}
+\toprule
+Object & Established result and scope \\
+\midrule
+Allocation invariance & Exact moment and common-atom criteria under a loss-consistent representation \\
+Floors and clipping & Sharp CCF endpoint reduction for common bounds and separable coefficients \\
+Joint conservatism & Confidence-set/optimization separation, with validity tied to the chosen joint set \\
+Regulatory mapping & Cited CRR3/EBA operator map; exposure-class review required \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{samepage}
+
+\section*{Code, reproducibility and disclosure}
+
+The implementation, certificates and deterministic reproduction commands are
+available in the
+\href{https://github.com/Maar10Herr/Capital-Consistency-Public}{public repository}.
+AI tools assisted with literature organization, drafting, implementation and
+testing. Algebraic claims are stated and proved in the paper; the executable
+certificates and tests have the stated finite scope.
+
+\bibliographystyle{plain}
+\bibliography{references}
+\end{document}
